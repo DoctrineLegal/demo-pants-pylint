@@ -1,0 +1,31 @@
+[GLOBAL]
+pants_version = "2.14.0"
+backend_packages = [
+  "pants.backend.python",
+  "pants.backend.python.lint.pylint",
+]
+
+[python]
+interpreter_constraints = ["==3.10.*"]
+resolves = { python-default = "pants.lock", pylint-plugins = "pylint_plugins/pants-pylint-plugins.lock" }
+enable_resolves = true
+
+[python-bootstrap]
+search_path = ["<PYENV>", "<PATH>"]
+
+[anonymous-telemetry]
+enabled = false
+
+[source]
+root_patterns = [
+  "/",
+  "/pylint_plugins",
+]
+
+[pylint]
+config = "pyproject.toml"
+version = "pylint>=2.13.0,<2.15"
+lockfile = "config/pants/pants-pylint.lock"
+source_plugins = [
+  "pylint_plugins:pylint-plugins-sources",
+]
