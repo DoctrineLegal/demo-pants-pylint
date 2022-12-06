@@ -21,7 +21,8 @@ This creates several virtual environments. Among them, you'll find:
 
 ## Lint with 1st-party pylint plugin enabled 
 
-In order to check that the 1st-party pylint plugin is working, a sample of code has been added to [project/flows/example/tasks/dummy.py](./project/flows/example/tasks/dummy.py). This code sample is not valid against the rule defined in the pylint plugin.
+We have set an arbitrary linter rule that says: `every prefect task definition name should be suffixed with "_task"`.
+In order to check that the 1st-party pylint plugin is working as expected, a code sample has been added to [project/flows/example/tasks/dummy.py](./project/flows/example/tasks/dummy.py). This code sample is not valid regarding the rule defined in the pylint plugin.
 
 You can now run the linter:
 ```bash
@@ -29,7 +30,7 @@ You can now run the linter:
 ```
 and you will get an error **C9002** (_invalid-task-definition-name_) as expected.
 
-## An overview of how the 1st-party plugins work
+## An overview of how 1st-party plugins work
 
 Ultimately, what you're looking for is that you can run your custom linter rules on your runtime code, and this can be illustrated with this:
 ```mermaid
@@ -64,3 +65,9 @@ flowchart TB
     classDef tool fill:#485460,stroke:#2c3e50,text:#8e44ad;
     class pylint-ecosystem tool
 ```
+
+## Troubleshoot
+
+This sample is an illustration, and might contain issues, bugs and typos. If you find any, please report it.
+
+For **Apple Silicon machines (M1 & M2)**, you'll need to install `openssl` & `libpq`. Then prefix the export command with `LDFLAGS="-L$(brew --prefix openssl)/lib" CPPFLAGS="-I$(brew --prefix openssl)/include"`
